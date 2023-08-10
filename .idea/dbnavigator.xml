@@ -2,11 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-<<<<<<< HEAD
     <value-preview-text-wrapping value="false" />
-=======
-    <value-preview-text-wrapping value="true" />
->>>>>>> ae3877a (Update README.md)
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
@@ -30,14 +26,11 @@
     <retain-sticky-names value="false" />
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
-    <mapping file-url="file://$PROJECT_DIR$/db.sqlite3" connection-id="" session-id="" current-schema="" />
+    <mapping file-url="file://$PROJECT_DIR$/db.sqlite3" connection-id="" session-id="MAIN" current-schema="" />
   </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />
-  </component>
-  <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
-    <recently-used-interfaces />
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>

@@ -16,7 +16,7 @@ User = get_user_model()
 class SignupViewset(APIView):
 
     """
-    Create User. Return 201 code if successfully created
+    Créer un utilisateur. Renvoie le code 201 si créé avec succès
     """
 
     def post(self, request):
@@ -31,9 +31,9 @@ class ProjectViewset(GetDetailSerializerClassMixin, ModelViewSet):
 
     """
     Project endpoint.
-    Create: Anyone
-    Get list / details: Contributor or Author
-    Update / delete: Author
+    Create: N'importe qui
+    Get list / details: Contributeur ou auteur
+    Update / delete: Auteur
     """
 
     permission_classes = (ProjectPermission,)
@@ -75,10 +75,10 @@ class ProjectViewset(GetDetailSerializerClassMixin, ModelViewSet):
 class UserContributorsViewset(ModelViewSet):
 
     """
-    Projects contributor endpoint. Used to get / add / delete contributors from a given project.
-    Get returns User objects, so we need to map this viewset to the user model.
-    Get list / details: Contributor or Author
-    Create / update / delete: Author
+    Projects contributor endpoint. Utilisé pour obtenir / ajouter / supprimer des contributeurs d'un projet donné.
+    Get renvoie des objets utilisateur, nous devons donc mapper cet ensemble de vues au modèle utilisateur.
+    Get list / details: Contributeur ou auteur
+    Create / update / delete: Auteur
     """
 
     permission_classes = (ContributorViewsetPermission,)
@@ -100,31 +100,31 @@ class UserContributorsViewset(ModelViewSet):
                 )
                 contributor.save()
                 return Response(status=status.HTTP_201_CREATED)
-            return Response(data={'error': 'User does not exist !'})
+            return Response(data={'erreur': "L'utilisateur n'existe pas !"})
         except IntegrityError:
-            return Response(data={'error': 'User already added !'})
+            return Response(data={'erreur': 'Utilisateur déjà ajouté !'})
 
     @transaction.atomic
     def destroy(self, request, *args, **kwargs):
         user_to_delete = User.objects.filter(id=self.kwargs['pk']).first()
         if user_to_delete == request.user:
-            return Response(data={'error': 'You cannot delete yourself !'})
+            return Response(data={'erreur': 'Vous ne pouvez pas vous supprimer !'})
         if user_to_delete:
             contributor = Contributor.objects.filter(user_id=self.kwargs['pk'], project_id=self.kwargs['projects_pk']).first()
             if contributor:
                 contributor.delete()
                 return Response()
-            return Response(data={'error': 'Contributor not assigned to project !'})
+            return Response(data={'erreur': 'Contributeur non affecté au projet !'})
         else:
-            return Response(data={'error': 'User does not exist !'})
+            return Response(data={'erreur': "L'utilisateur n'existe pas !"})
 
 
 class IssuesViewset(GetDetailSerializerClassMixin, ModelViewSet):
 
     """
-    Issue endpoint. Used to get / add / delete issues from a given project.
-    Get list / details, Create: Project Contributor or Author
-    Update / delete: Issue Author
+    Issue endpoint. Utilisé pour obtenir / ajouter / supprimer des problèmes d'un projet donné.
+    Get list / details, Create: Contributeur ou auteur du projet
+    Update / delete: Auteur du problème
     """
 
     permission_classes = (IssuePermission,)
@@ -162,9 +162,9 @@ class IssuesViewset(GetDetailSerializerClassMixin, ModelViewSet):
 class CommentViewset(GetDetailSerializerClassMixin, ModelViewSet):
 
     """
-    Issue endpoint. Used to get / add / delete comments from a given issue of a given project.
-    Get list / details, Create: Project Contributor or Author
-    Update / delete: Comment Author
+    Issue endpoint. Utilisé pour obtenir / ajouter / supprimer des commentaires d'un problème donné d'un projet donné.
+    Get list / details, Create: Contributeur ou auteur du projet
+    Update / delete: Auteur du commentaire
     """
 
     permission_classes = (CommentPermission,)
