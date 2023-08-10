@@ -5,20 +5,20 @@ from django.conf import settings
 
 class User(AbstractUser):
 
-    # Disable username field and enable login via email
+    # Désactiver le champ du nom d'utilisateur et activer la connexion par e-mail
     username = None
     email = models.EmailField(unique=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
-    # Make a new member active & staff by default, so it can do CRUD operations
+    # Rendre un nouveau membre actif et personnel par défaut, afin qu'il puisse effectuer des opérations CRUD
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)
 
 
 class Project(models.Model):
 
-    # Projects Types definition
+    # Définition des types de projets
     BACKEND = 'BACKEND'
     FRONTEND = 'FRONTEND'
     IOS = 'IOS'
@@ -50,34 +50,34 @@ class Contributor(models.Model):
 
 class Issue(models.Model):
 
-    # Priorities definition
-    LOW = 'LOW'
-    MEDIUM = 'MEDIUM'
-    HIGH = 'HIGH'
+    # Définition des priorités
+    LOW = 'FAIBLE'
+    MEDIUM = 'MOYENNE'
+    HIGH = 'HAUTE'
     PRIORITY_CHOICES = (
-        (LOW, 'Low'),
-        (MEDIUM, 'Medium'),
-        (HIGH, 'High')
+        (LOW, 'Faible'),
+        (MEDIUM, 'Moyenne'),
+        (HIGH, 'Haute')
     )
 
-    # Tags definition
-    BUG = 'BUG'
-    IMPROVEMENT = 'IMPROVEMENT'
-    TASK = 'TASK'
+    # Définition des balises
+    BUG = 'BOGUE'
+    FEATURE = 'FONCTION'
+    TASK = 'TACHE'
     TAGS_CHOICES = (
-        (BUG, 'Bug'),
-        (IMPROVEMENT, 'Improvement'),
-        (TASK, 'Task')
+        (BUG, 'Bogue'),
+        (FEATURE, 'Fonction'),
+        (TASK, 'Tâche')
     )
 
-    # Status definition
-    TODO = 'TODO'
-    WIP = 'WIP'
-    DONE = 'DONE'
+    # Définition du statut
+    TODO = 'A FAIRE'
+    IN_PROGRESS = 'EN COURS'
+    FINISHED = 'FINI'
     STATUS_CHOICES = (
-        (TODO, 'To-do'),
-        (WIP, 'WIP'),
-        (DONE, 'Done')
+        (TODO, 'A faire'),
+        (IN_PROGRESS, 'En cours'),
+        (FINISHED, 'Fini')
     )
 
     title = models.CharField(max_length=155)

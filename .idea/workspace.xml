@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="737929f9-a267-48f4-b5d1-2dae1fa7321d" name="Changes" comment="Mise à jour urls views">
-      <change beforePath="$PROJECT_DIR$/.gitignore.txt" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore.txt" afterDir="false" />
+    <list default="true" id="737929f9-a267-48f4-b5d1-2dae1fa7321d" name="Changes" comment="Mise à jour gitignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/Pipfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/Pipfile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/app/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/app/asgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/app/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/app/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/app/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/manage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/shop/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/shop/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/shop/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/shop/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/shop/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/shop/mixins.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/shop/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/shop/permissions.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/shop/serializers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/shop/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-or/shop/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/mixins.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/mixins.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/permissions.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/permissions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop/serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +97,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691660088133</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Mise à jour gitignore">
+      <created>1691660691771</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1691660691771</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -202,6 +191,7 @@
     <MESSAGE value="Update README.md" />
     <MESSAGE value="Revert &quot;Initial commit&quot;&#10;&#10;This reverts commit 0b529ffd9a641a8b5e081da365827df91c8de6dd." />
     <MESSAGE value="Mise à jour urls views" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mise à jour urls views" />
+    <MESSAGE value="Mise à jour gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mise à jour gitignore" />
   </component>
 </project>

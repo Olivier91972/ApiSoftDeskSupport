@@ -12,11 +12,11 @@ def check_contributor(user, project):
 class ContributorViewsetPermission(BasePermission):
 
     """
-    Contributors can List other contributors, Read details about them
-    Authors can List, Read, Add, Update or Delete a contributor
+    Les contributeurs peuvent répertorier d'autres contributeurs, lire des détails à leur sujet
+    Les auteurs peuvent répertorier, lire, ajouter, mettre à jour ou supprimer un contributeur
     """
 
-    message = 'You dont have permission to do that.'
+    message = "Vous n'avez pas la permission de faire cela."
 
     def has_permission(self, request, view):
         if not request.user and request.user.is_authenticated:
@@ -32,12 +32,12 @@ class ContributorViewsetPermission(BasePermission):
 class ProjectPermission(BasePermission):
 
     """
-    Anyone can create a project.
-    Authors can Create, Read, Update and Delete a project.
-    Contributors can List theirs projects, Read a project
+    Tout le monde peut créer un projet.
+    Les auteurs peuvent créer, lire, mettre à jour et supprimer un projet.
+    Les contributeurs peuvent Lister leurs projets, Lire un projet
     """
 
-    message = 'You dont have permissions to do that.'
+    message = "Vous n'avez pas la permission de faire cela."
 
     def has_permission(self, request, view):
         return request.user and request.user.is_authenticated
@@ -52,11 +52,11 @@ class ProjectPermission(BasePermission):
 class IssuePermission(BasePermission):
 
     """
-    Issue author can Update and Delete their issues.
-    Project contributors can List all project issues, Read issue or Create issue.
+    L'auteur du problème peut mettre à jour et supprimer ses problèmes.
+    Les contributeurs du projet peuvent Lister tous les problèmes du projet, Lire le problème ou Créer un problème.
     """
 
-    message = 'You dont have permission to do that.'
+    message = "Vous n'avez pas la permission de faire cela."
 
     def has_object_permission(self, request, view, obj):
         if not request.user.is_authenticated:
@@ -71,11 +71,11 @@ class IssuePermission(BasePermission):
 class CommentPermission(BasePermission):
 
     """
-    Comment author can Update or Delete their comments.
-    Project contributors can List all comments of an issue, Read a comment or Create a comment.
+    L'auteur du commentaire peut mettre à jour ou supprimer ses commentaires.
+    Les contributeurs du projet peuvent Lister tous les commentaires d'un ticket, Lire un commentaire ou Créer un commentaire.
     """
 
-    message = 'You dont have permission to do that.'
+    message = "Vous n'avez pas la permission de faire cela."
 
     def has_object_permission(self, request, view, obj):
         if not request.user.is_authenticated:

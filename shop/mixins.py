@@ -2,7 +2,7 @@
 
 class GetDetailSerializerClassMixin:
     """
-    Get detail serializer class
+    Obtenir une sérialisation détaillée
     """
     def get_serializer_class(self):
         if self.action == 'retrieve' or self.action == 'create' or self.action == 'update' and self.detail_serializer_class is not None:

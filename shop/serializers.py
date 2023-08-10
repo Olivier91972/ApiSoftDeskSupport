@@ -18,13 +18,13 @@ class UserSignupSerializer(ModelSerializer):
 
     def validate_email(self, value: str) -> str:
         if User.objects.filter(email=value).exists():
-            raise ValidationError("User already exists")
+            raise ValidationError("L'utilisateur existe déjà")
         return value
 
     def validate_password(self, value: str) -> str:
         if value is not None:
             return make_password(value)
-        raise ValidationError("Password is empty")
+        raise ValidationError("Le mot de passe est vide")
 
     def get_tokens(self, user: User) -> dict:
         tokens = RefreshToken.for_user(user)
