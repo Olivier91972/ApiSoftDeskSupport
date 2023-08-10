@@ -16,7 +16,7 @@ User = get_user_model()
 class SignupViewset(APIView):
 
     """
-    Créer un utilisateur. Renvoie le code 201 si créé avec succès
+    Create User. Return 201 code if successfully created
     """
 
     def post(self, request):
@@ -31,9 +31,9 @@ class ProjectViewset(GetDetailSerializerClassMixin, ModelViewSet):
 
     """
     Project endpoint.
-    Create: N'importe qui
-    Get list / details: Contributeur ou auteur
-    Update / delete: Auteur
+    Create: Anyone
+    Get list / details: Contributor or Author
+    Update / delete: Author
     """
 
     permission_classes = (ProjectPermission,)
@@ -45,13 +45,8 @@ class ProjectViewset(GetDetailSerializerClassMixin, ModelViewSet):
         projects_ids = [contributor.project_id.id for contributor in Contributor.objects.filter(user_id=self.request.user).all()]
         return Project.objects.filter(id__in=projects_ids)
 
-    def get(self, request, *args, **kwargs):
-        projects = self.get_projects()
-        serializer = self.serializer_class(projects, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
     def get_projects(self):
-        projects = Project.objects.all()
+        projects = Project.object.all()
         return projects
 
     @transaction.atomic
@@ -80,10 +75,10 @@ class ProjectViewset(GetDetailSerializerClassMixin, ModelViewSet):
 class UserContributorsViewset(ModelViewSet):
 
     """
-    Projects contributor endpoint. Utilisé pour obtenir / ajouter / supprimer des contributeurs d'un projet donné.
-    Get renvoie des objets utilisateur, nous devons donc mapper cet ensemble de vues au modèle utilisateur.
-    Get list / details: Contributeur ou auteur
-    Create / update / delete: Auteur
+    Projects contributor endpoint. Used to get / add / delete contributors from a given project.
+    Get returns User objects, so we need to map this viewset to the user model.
+    Get list / details: Contributor or Author
+    Create / update / delete: Author
     """
 
     permission_classes = (ContributorViewsetPermission,)
@@ -105,31 +100,31 @@ class UserContributorsViewset(ModelViewSet):
                 )
                 contributor.save()
                 return Response(status=status.HTTP_201_CREATED)
-            return Response(data={'erreur': "L'utilisateur n'existe pas !"})
+            return Response(data={'error': 'User does not exist !'})
         except IntegrityError:
-            return Response(data={'erreur': 'Utilisateur déjà ajouté !'})
+            return Response(data={'error': 'User already added !'})
 
     @transaction.atomic
     def destroy(self, request, *args, **kwargs):
         user_to_delete = User.objects.filter(id=self.kwargs['pk']).first()
         if user_to_delete == request.user:
-            return Response(data={'erreur': 'Vous ne pouvez pas vous supprimer !'})
+            return Response(data={'error': 'You cannot delete yourself !'})
         if user_to_delete:
             contributor = Contributor.objects.filter(user_id=self.kwargs['pk'], project_id=self.kwargs['projects_pk']).first()
             if contributor:
                 contributor.delete()
                 return Response()
-            return Response(data={'erreur': 'Contributeur non affecté au projet !'})
+            return Response(data={'error': 'Contributor not assigned to project !'})
         else:
-            return Response(data={'erreur': "L'utilisateur n'existe pas !"})
+            return Response(data={'error': 'User does not exist !'})
 
 
 class IssuesViewset(GetDetailSerializerClassMixin, ModelViewSet):
 
     """
-    Issue endpoint. Utilisé pour obtenir / ajouter / supprimer des problèmes d'un projet donné.
-    Get list / details, Create: Contributeur ou auteur du projet
-    Update / delete: Auteur du problème
+    Issue endpoint. Used to get / add / delete issues from a given project.
+    Get list / details, Create: Project Contributor or Author
+    Update / delete: Issue Author
     """
 
     permission_classes = (IssuePermission,)
@@ -167,9 +162,9 @@ class IssuesViewset(GetDetailSerializerClassMixin, ModelViewSet):
 class CommentViewset(GetDetailSerializerClassMixin, ModelViewSet):
 
     """
-    Issue endpoint. Utilisé pour obtenir / ajouter / supprimer des commentaires d'un problème donné d'un projet donné.
-    Get list / details, Create: Contributeur ou auteur du projet
-    Update / delete: Auteur du commentaire
+    Issue endpoint. Used to get / add / delete comments from a given issue of a given project.
+    Get list / details, Create: Project Contributor or Author
+    Update / delete: Comment Author
     """
 
     permission_classes = (CommentPermission,)
