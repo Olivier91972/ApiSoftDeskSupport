@@ -8,12 +8,18 @@ class User(AbstractUser):
     # Désactiver le champ du nom d'utilisateur et activer la connexion par e-mail
     username = None
     email = models.EmailField(unique=True)
+    age = models.IntegerField(default=15, blank=True, null=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
     # Rendre un nouveau membre actif et personnel par défaut, afin qu'il puisse effectuer des opérations CRUD
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)
+
+    # Limiter l'accès aux user de moins de 15 ans :
+    # Attention, dans le respect des normes RGPD, un utilisateur de moins de
+    # 15 ans ne devrait pas pouvoir finaliser son inscription
+    # birthdate = models.DateField(verbose_name='birthdate')
 
 
 class Project(models.Model):

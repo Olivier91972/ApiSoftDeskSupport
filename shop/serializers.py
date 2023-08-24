@@ -11,14 +11,37 @@ User = get_user_model()
 class UserSignupSerializer(ModelSerializer):
 
     tokens = SerializerMethodField()
+    # birthdate = SerializerMethodField()
+    # age = SerializerMethodField()
 
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'email', 'password', 'tokens']
+        fields = ['id', 'first_name', 'last_name', 'email', 'password', 'tokens', 'age']  # ,'birthdate'
 
-    def validate_email(self, value: str) -> str:
-        if User.objects.filter(email=value).exists():
+    # @property
+    # def age(self):
+    #     return timezone.now().year - self.birthdate.year
+    #
+    # def calculate_age(self, instance):
+    #     request = self.context.get('request')
+    #     user = request.user
+    #     if user.is_authenticated() and user.is_staff:
+    #         return datetime.datetime.now().year - instance.dob.year
+    #     return 'Hidden'
+
+    # def max_min_validator(self, min_value=int):
+    #     if min_value > 120:
+    #         raise ValidationError("L'age ne peut pas être au dela de 120 ans.")
+    #     elif min_value <= 0:
+    #         raise ValidationError("L'age ne peut pas être 5 ans ou moins")
+    #     else:
+    #         return min_value
+
+    def validate_email(self, value: str) -> str:  # age=int
+        if User.objects.filter(email=value).exists():  # and User.objects.filter(age=value) > 15:
             raise ValidationError("L'utilisateur existe déjà")
+        elif User.objects.filter(email=value).exists():  # and User.objects.filter(age=value) < 15:
+            raise ValidationError("Vous n'avez pas l'age minimum requis")
         return value
 
     def validate_password(self, value: str) -> str:
@@ -38,7 +61,7 @@ class UserSignupSerializer(ModelSerializer):
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'email']
+        fields = ['id', 'first_name', 'last_name', 'email', 'age']
 
 
 class ContributorSerializer(ModelSerializer):

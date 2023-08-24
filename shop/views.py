@@ -46,7 +46,7 @@ class ProjectViewset(GetDetailSerializerClassMixin, ModelViewSet):
         return Project.objects.filter(id__in=projects_ids)
 
     def get_projects(self):
-        projects = Project.object.all()
+        projects = Project.objects.all()
         return projects
 
     @transaction.atomic
