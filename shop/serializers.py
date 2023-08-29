@@ -5,6 +5,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from shop.models import Project, Contributor, Issue, Comment
 
 
+# Renvoie le modèle utilisateur actif dans ce projet.
 User = get_user_model()
 
 
@@ -37,10 +38,10 @@ class UserSignupSerializer(ModelSerializer):
     #     else:
     #         return min_value
 
-    def validate_email(self, value: str) -> str:  # age=int
-        if User.objects.filter(email=value).exists():  # and User.objects.filter(age=value) > 15:
+    def validate_email(self, value: str, valage=int) -> str:  # age=int
+        if User.objects.filter(email=value).exists() and User.objects.filter(age=valage) > 14:  # and User.objects.filter(age=value) > 15:
             raise ValidationError("L'utilisateur existe déjà")
-        elif User.objects.filter(email=value).exists():  # and User.objects.filter(age=value) < 15:
+        elif User.objects.filter(email=value).exists() and User.objects.filter(age=valage) < 15:  # and User.objects.filter(age=value) < 15:
             raise ValidationError("Vous n'avez pas l'age minimum requis")
         return value
 
